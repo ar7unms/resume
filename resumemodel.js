@@ -1,14 +1,14 @@
 const mongoose =require("mongoose")
-const resumeSchema=mongoose.Schema(
+const resumeSchema=new mongoose.Schema(
     {
         userid:{
             type:mongoose.Schema.Types.ObjectId,
             required:true,
-            ref:"blog"
+            ref:"resume"
         },
         post:{
             type:String,
-            required:true
+            required:true,
         },
         postdate:{
             type:Date,
@@ -17,4 +17,4 @@ const resumeSchema=mongoose.Schema(
 
     }
 )
-exports=mongoose.model("post",resumeSchema)
+module.exports=mongoose.model("post",resumeSchema)

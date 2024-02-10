@@ -1,10 +1,11 @@
 const express=require("express")
 const router=express.Router()
-const resumemodel=require("./resumemode")
+const resumemodel=require("./resumemodel")
 
-router.post("/add",async(res,req)=>{
+router.post("/add",async(req,res)=>{
     let data=req.body
     let post=new resumemodel(data)
+    let result=await post.save()
     res.json({
         status:"Success"
     })
@@ -12,8 +13,10 @@ router.post("/add",async(res,req)=>{
 })
 
 router.get("/viewall",async(req,res)=>{
-    let result=await resumemodel.find()
-    .populate()
+   let result=await resumemodel.find()
+    .populate("userid","name email gender")
     .exec()
+    res.json(result)
 })
 
+module.exports=router
