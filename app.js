@@ -2,7 +2,8 @@ const express=require("express")
 const cors=require("cors")
 const mongoose=require("mongoose")
 const userrouter=require("./userrouter")
-//const resumerouter=require("./postrouter")
+const resumerout=require("./resumerouter")
+const router = require("./userrouter")
 
 const app=express()
 
@@ -13,10 +14,9 @@ mongoose.connect("mongodb+srv://msarjun077:Arjun2000@cluster0.nmwlgoz.mongodb.ne
     useNewUrlParser:true
 })
 app.use("/api/user",userrouter)
-app.use("/api/resume",resumemodel)
+app.use("/api/resume",resumerout)
 
 
 app.listen(3007,()=>{
     console.log("server running")
 })
-
